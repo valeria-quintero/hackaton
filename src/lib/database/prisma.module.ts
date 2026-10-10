@@ -1,7 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import type { PostgresClient } from '@prisma/orm-postgres/runtime';
 import type { Contract } from '../../prisma/contract.d';
-import contractJson from '../../prisma/contract.json' with { type: 'json' };
+import contractJson from '../../prisma/contract.json';
 import { PRISMA_CLIENT } from './prisma.constants';
 import { PrismaService } from './prisma.service';
 
