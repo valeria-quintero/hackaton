@@ -31,6 +31,24 @@
 $ npm install
 ```
 
+## Authentication
+
+Better Auth is mounted at `/api/auth` and uses the PostgreSQL connection in
+`DATABASE_URL`. Set `BETTER_AUTH_SECRET` (at least 32 characters) and
+`BETTER_AUTH_URL` in `.env` before starting the app. Its email/password
+sign-up and sign-in endpoints are available under `/api/auth`; authenticated
+routes are protected by default, while public routes must use
+`@AllowAnonymous()`.
+
+New users receive the `PARTICIPANT` role. The role is validated as
+`PARTICIPANT` or `ADMIN` and is not accepted from client input during
+sign-up. Better Auth manages its own PostgreSQL auth tables; after changing
+the auth schema, migrate them with:
+
+```bash
+npm exec auth -- migrate --config src/lib/auth/auth.ts --yes
+```
+
 ## Compile and run the project
 
 ```bash
