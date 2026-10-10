@@ -1,10 +1,10 @@
 # Memory — Arcjet NestJS integration
 
-Last updated: 2026-10-09 14:34
+Last updated: 2026-10-09 17:32
 
 ## What was built
 
-Created Arcjet site `vm-hackaton` (`site_01m4h5t4j6ew6rwhw2dsc7nqee`) and added `@arcjet/node` plus `dotenv`. Added a global Arcjet module/service and global Nest guard that applies Shield and a 100-request/60-second fixed-window rate limit. Loaded `.env` at bootstrap and stored the site's key there; `.env` is ignored by Git.
+Created Arcjet site `vm-hackaton` (`site_01m4h5t4j6ew6rwhw2dsc7nqee`) and added `@arcjet/node` plus `dotenv`. Added a global Arcjet module/service and global Nest guard that applies Shield and a 100-request/60-second fixed-window rate limit. Loaded `.env` at bootstrap and stored the site's key there; `.env` is ignored by Git. Later retrieved the site's key again and updated the single `ARCJET_KEY` entry in `.env`; never persist the key in memory.
 
 ## Decisions made
 
@@ -16,7 +16,7 @@ Avoided changing the entire project to ESM to satisfy Arcjet's ESM-only SDK; the
 
 ## Current state
 
-Arcjet is active in the app's global request pipeline. `npm run build`, `npm run lint`, editor diagnostics, and a local HTTP smoke test passed. Arcjet logs show the smoke-test request allowed and evaluated by the rate-limit rule. The raw key must remain only in `.env`.
+Arcjet is active in the app's global request pipeline. `npm run build`, `npm run lint`, editor diagnostics, and a local HTTP smoke test passed. Arcjet logs show the smoke-test request allowed and evaluated by the rate-limit rule. The latest Arcjet key is set in the ignored `.env`; it must remain only there.
 
 ## Next session starts with
 
