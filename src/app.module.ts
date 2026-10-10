@@ -6,6 +6,7 @@ import { PrismaModule } from './lib/database/prisma.module';
 import { auth } from './lib/auth/auth';
 import { AuthDatabaseModule } from './lib/auth/auth-database.module';
 import { AuthModule as BetterAuthModule } from '@thallesp/nestjs-better-auth';
+import { HackatonModule } from './module/hackaton/hackaton.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { AuthModule as BetterAuthModule } from '@thallesp/nestjs-better-auth';
     PrismaModule,
     AuthDatabaseModule,
     BetterAuthModule.forRoot({ auth }),
+    HackatonModule,
   ],
   controllers: [AppController],
   providers: [AppService],
