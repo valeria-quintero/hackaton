@@ -19,3 +19,28 @@ model Post {
   createdAt TimestamptzString @default(now())
   updatedAt temporal.updatedAtString()
 }
+
+model Hackaton {
+  id           Int                   @id @default(autoincrement())
+  name         String
+  description  String?
+  startDate    TimestamptzString
+  endDate      TimestamptzString
+  isActive     Boolean               @default(true)
+  authorId     String
+  createdAt    TimestamptzString     @default(now())
+  updatedAt    temporal.updatedAtString()
+  participants HackatonParticipant[]
+}
+
+model HackatonParticipant {
+  id         Int               @id @default(autoincrement())
+  hackatonId Int
+  userId     String
+  createdAt  TimestamptzString @default(now())
+  hackaton   Hackaton          @relation(fields: [hackatonId], references: [id], onDelete: Cascade)
+
+  @@unique([hackatonId, userId])
+  @@index([hackatonId])
+  @@index([userId])
+}
