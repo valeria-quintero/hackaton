@@ -1,8 +1,8 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
-import { RolesGuard } from '@/common/guards/roles.guard';
-import { Roles } from '@/common/decorators/roles.decorator';
-import { ResponseMessage } from '@/common/decorators/response-message.decorator';
+import { RolesGuard } from '../../common/guards/roles.guard';
+import { Roles } from '../../common/decorators/roles.decorator';
+import { ResponseMessage } from '../../common/decorators/response-message.decorator';
 
 @Controller('user')
 @UseGuards(RolesGuard)
@@ -17,7 +17,7 @@ export class UserController {
   }
 
   @Get(':id')
-  findById(@Param('id') id: string) {
-    return this.userService.findUserById(id);
-  }
+findOne(@Param('id', ParseIntPipe) id: number) {
+  return this.userService.findUserById(id);
+}
 }
