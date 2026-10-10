@@ -1,0 +1,1 @@
+export const AUTH_DATABASE_POOL = Symbol('AUTH_DATABASE_POOL');
